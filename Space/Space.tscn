@@ -1,7 +1,30 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Rocket/Rocket.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Space/spr_stars02.png" type="Texture" id=2]
+[ext_resource path="res://Space/Space.png" type="Texture" id=3]
+[ext_resource path="res://Space/spr_stars01.png" type="Texture" id=4]
 
 [node name="Space" type="Node2D"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 2560, 2560 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+texture = ExtResource( 3 )
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 2560, 2560 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer2"]
+texture = ExtResource( 4 )
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 2560, 2560 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer3"]
+texture = ExtResource( 2 )
 
 [node name="Rocket" parent="." instance=ExtResource( 1 )]
