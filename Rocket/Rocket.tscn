@@ -9,7 +9,7 @@ max_value = 200.0
 _data = [ Vector2( 0, 144.545 ), 0.0, 0.0, 0, 0, Vector2( 1, -200 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="Gradient" id=2]
-offsets = PoolRealArray( 0, 0.874172, 1 )
+offsets = PoolRealArray( 0, 0.807947, 1 )
 colors = PoolColorArray( 1, 0.328125, 0, 1, 1, 0.563954, 0, 1, 1, 0.584314, 0, 0 )
 
 [sub_resource type="RectangleShape2D" id=3]
@@ -28,7 +28,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 0.75, 0.01 ]
+"values": [ 0.3, 0.01 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("CPUParticles2D:modulate")
@@ -48,18 +48,17 @@ script = ExtResource( 2 )
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 position = Vector2( 0, 61 )
-emitting = false
 amount = 1000
-lifetime = 0.75
+lifetime = 0.3
 lifetime_randomness = 0.4
 local_coords = false
 emission_shape = 2
 emission_rect_extents = Vector2( 12, 0 )
 linear_accel = 100.0
 linear_accel_curve = SubResource( 1 )
-radial_accel = -25.0
+radial_accel = -60.0
 radial_accel_random = 1.0
-scale_amount = 4.0
+scale_amount = 5.0
 scale_amount_random = 1.0
 color_ramp = SubResource( 2 )
 hue_variation = -0.05
