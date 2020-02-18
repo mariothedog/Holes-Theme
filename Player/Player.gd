@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 const gravity_strength = 800
 const jump_vec = Vector2(0, 500)
+const max_mine_distance = 200
 
 onready var asteroid = get_parent().get_node("Asteroid Object")
 
@@ -27,6 +28,10 @@ func input():
 	jump = false
 	if Input.is_action_just_pressed("thrust"):
 		jump = true
+	
+	#if Input.is_action_just_pressed("make_hole"):
+	#	if position.distance_to(get_global_mouse_position()) <= max_mine_distance:
+	#		make_hole(get_global_mouse_position())
 
 func movement(delta):
 	var direction_to_asteroid = position.direction_to(asteroid.position)
