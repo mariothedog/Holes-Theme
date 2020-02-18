@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Holes Theme"
-run/main_scene="res://Space/Space.tscn"
+run/main_scene="res://Asteroids/Asteroid Scene.tscn"
 config/icon="res://icon.png"
 
 [importer_defaults]
