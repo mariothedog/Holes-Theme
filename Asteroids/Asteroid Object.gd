@@ -11,8 +11,7 @@ func _ready():
 func _on_Click_Detection_input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_LEFT:
 		var player = get_parent().get_node("Player")
-		if player.position.distance_to(get_global_mouse_position()) <= player.max_mine_distance*500:
-			make_hole(get_global_mouse_position())
+		make_hole(get_global_mouse_position())
 
 func make_hole(pos):
 	var pos_offsetted = pos + $Sprite.get_rect().size/2
