@@ -30,3 +30,7 @@ func make_hole(pos):
 	$Sprite.material.set_shader_param("number_of_holes", number_of_holes)
 	
 	number_of_holes += 1
+
+func _on_Rocket_Click_Detection_input_event(_viewport, event, _shape_idx):
+	if event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_LEFT:
+		get_tree().change_scene("res://Space/Space.tscn")
