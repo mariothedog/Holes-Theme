@@ -10,7 +10,6 @@ func _ready():
 
 func _on_Click_Detection_input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_LEFT:
-		var player = get_parent().get_node("Player")
 		make_hole(get_global_mouse_position())
 
 func make_hole(pos):
@@ -33,4 +32,5 @@ func make_hole(pos):
 
 func _on_Rocket_Click_Detection_input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_LEFT:
-		get_tree().change_scene("res://Space/Space.tscn")
+		if get_tree().change_scene("res://Space/Space.tscn") != OK:
+			print_debug("An error occured while switching scene.")

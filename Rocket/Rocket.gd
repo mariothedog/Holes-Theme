@@ -16,7 +16,7 @@ func _ready():
 	$CPUParticles2D.emitting = false
 	health = max_health
 
-func _process(delta):
+func _process(_delta):
 	if health < max_health:
 		$"Health Bar".visible = true
 
@@ -81,4 +81,5 @@ func die():
 	queue_free()
 
 func land(asteroid):
-	get_tree().change_scene("res://Asteroids/Asteroid Scene.tscn")
+	if get_tree().change_scene("res://Asteroids/Asteroid Scene.tscn") != OK:
+		print_debug("An error occured while switching scene.")
