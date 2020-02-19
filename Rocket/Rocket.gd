@@ -6,19 +6,28 @@ const deacc = 5
 const fire_particles_lifetime = 1
 const terminal_velocity = 500
 const max_health = 100
+const max_fuel = 200
 
 var velocity = Vector2()
 
 var health
+var fuel
 var can_hurt = true
 
 func _ready():
 	$CPUParticles2D.emitting = false
+	
+	$"Health Bar".max_value = max_health
 	health = max_health
+	
+	$"HUD/Fuel Bar".max_value = max_fuel
+	fuel = max_fuel
 
 func _process(_delta):
 	if health < max_health:
 		$"Health Bar".visible = true
+	
+	$"HUD/Fuel Bar".value = fuel
 
 func _physics_process(delta):
 	input()
@@ -26,12 +35,16 @@ func _physics_process(delta):
 	animate()
 
 func input():
-	if Input.is_action_pressed("thrust"):
+	if Input.is_action_pressed("thrust") and fuel > 0:
 		velocity += Vector2(0, -acc).rotated(rotation)
 		$CPUParticles2D.emitting = true
+		
+		fuel -= 1
 	
-	if Input.is_action_pressed("thrust_back"):
+	if Input.is_action_pressed("thrust_back") and fuel > 0:
 		velocity -= Vector2(0, -acc).rotated(rotation)
+		
+		fuel -= 1
 	
 	if Input.is_action_pressed("turn_right"):
 		rotate(deg2rad(rotation_amount))
