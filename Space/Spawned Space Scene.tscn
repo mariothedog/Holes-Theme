@@ -8,7 +8,7 @@
 
 [node name="Space" type="Node2D"]
 script = ExtResource( 5 )
-landing_asteroid_positions = [ Vector2( 3798, 3505 ), Vector2( 2376, -2381 ), Vector2( 3397, 1001 ), Vector2( -2534, 644 ), Vector2( -2796, -2030 ), Vector2( 2648, -308 ), Vector2( -3787, 3089 ), Vector2( 386, 533 ), Vector2( -1139, -3458 ), Vector2( 1746, 2293 ) ]
+landing_asteroid_positions = [ Vector2( -2423, -3291 ), Vector2( -3103, 3184 ), Vector2( -2919, 338 ), Vector2( 653, -1829 ), Vector2( 2787, -19 ), Vector2( -728, -732 ), Vector2( 3330, -3480 ), Vector2( 3344, 1575 ), Vector2( -1406, 2104 ), Vector2( 2283, -2003 ) ]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="." instance=ExtResource( 2 )]
 scroll_offset = Vector2( 512, 300 )
@@ -17,31 +17,31 @@ scroll_offset = Vector2( 512, 300 )
 script = ExtResource( 3 )
 
 [node name="Landing Asteroid" type="StaticBody2D" parent="." instance=ExtResource( 1 )]
-position = Vector2( 3798, 3505 )
+position = Vector2( -2423, -3291 )
 
 [node name="@Landing Asteroid@2" type="StaticBody2D" parent="." instance=ExtResource( 1 )]
-position = Vector2( 2376, -2381 )
+position = Vector2( -3103, 3184 )
 
 [node name="@Landing Asteroid@3" type="StaticBody2D" parent="." instance=ExtResource( 1 )]
-position = Vector2( 3397, 1001 )
+position = Vector2( -2919, 338 )
 
 [node name="@Landing Asteroid@4" type="StaticBody2D" parent="." instance=ExtResource( 1 )]
-position = Vector2( -2534, 644 )
+position = Vector2( 653, -1829 )
 
 [node name="@Landing Asteroid@5" type="StaticBody2D" parent="." instance=ExtResource( 1 )]
-position = Vector2( -2796, -2030 )
+position = Vector2( 2787, -19 )
 
 [node name="@Landing Asteroid@6" type="StaticBody2D" parent="." instance=ExtResource( 1 )]
-position = Vector2( 2648, -308 )
+position = Vector2( -728, -732 )
 
 [node name="@Landing Asteroid@7" type="StaticBody2D" parent="." instance=ExtResource( 1 )]
-position = Vector2( -3787, 3089 )
+position = Vector2( 3330, -3480 )
 
 [node name="@Landing Asteroid@8" type="StaticBody2D" parent="." instance=ExtResource( 1 )]
-position = Vector2( 386, 533 )
+position = Vector2( 3344, 1575 )
 
 [node name="@Landing Asteroid@9" type="StaticBody2D" parent="." instance=ExtResource( 1 )]
-position = Vector2( -1139, -3458 )
+position = Vector2( -1406, 2104 )
 
 [node name="@Landing Asteroid@10" type="StaticBody2D" parent="." instance=ExtResource( 1 )]
-position = Vector2( 1746, 2293 )
+position = Vector2( 2283, -2003 )
