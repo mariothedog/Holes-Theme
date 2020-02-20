@@ -19,6 +19,10 @@ config/name="Holes Theme"
 run/main_scene="res://Space/Space.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+global="*res://global.gd"
+
 [importer_defaults]
 
 texture={

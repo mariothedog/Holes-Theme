@@ -89,5 +89,7 @@ func die():
 	queue_free()
 
 func land(asteroid):
+	get_parent().save_scene()
+	
 	if get_tree().change_scene("res://Asteroids/Asteroid Scene.tscn") != OK:
 		print_debug("An error occured while switching scene.")

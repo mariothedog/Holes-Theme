@@ -35,8 +35,8 @@ func _process(_delta):
 		var pos
 		var in_range = true
 		while in_range:
-			var pos_x = random_number($Rocket.position.x - 1700, $Rocket.position.x + 1700)
-			var pos_y = random_number($Rocket.position.y - 1700, $Rocket.position.y + 1700)
+			var pos_x = global.random_number($Rocket.position.x - 1700, $Rocket.position.x + 1700)
+			var pos_y = global.random_number($Rocket.position.y - 1700, $Rocket.position.y + 1700)
 			pos = Vector2(pos_x, pos_y)
 
 			in_range = $Rocket.position.distance_to(pos) < max_asteroid_spawn_dist_to_player
@@ -48,17 +48,14 @@ func _process(_delta):
 
 		save_scene()
 
-func random_number(mini, maxi):
-	return range(mini,maxi)[randi()%range(mini,maxi).size()]
-
 func spawn_asteroid_landing():
 	var landing_asteroid_instance = landing_asteroid_scene.instance()
 		
 	var pos
 	var overlapping = true
 	while overlapping:
-		var pos_x = random_number(-4000, 4000)
-		var pos_y = random_number(-4000, 4000)
+		var pos_x = global.random_number(-4000, 4000)
+		var pos_y = global.random_number(-4000, 4000)
 		pos = Vector2(pos_x, pos_y)
 		
 		overlapping = false
