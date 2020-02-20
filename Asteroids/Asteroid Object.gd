@@ -32,5 +32,5 @@ func make_hole(pos):
 
 func _on_Rocket_Click_Detection_input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_LEFT:
-		if get_tree().change_scene("res://Space/Space.tscn") != OK:
+		if get_tree().change_scene("res://Space/Spawned Space Scene.tscn") != OK:
 			print_debug("An error occured while switching scene.")

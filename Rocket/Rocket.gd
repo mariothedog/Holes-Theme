@@ -6,7 +6,7 @@ const deacc = 5
 const fire_particles_lifetime = 1
 const terminal_velocity = 500
 const max_health = 100
-const max_fuel = 200
+const max_fuel = 400
 
 var velocity = Vector2()
 
@@ -38,12 +38,10 @@ func input():
 	if Input.is_action_pressed("thrust") and fuel > 0:
 		velocity += Vector2(0, -acc).rotated(rotation)
 		$CPUParticles2D.emitting = true
-		
 		fuel -= 1
 	
 	if Input.is_action_pressed("thrust_back") and fuel > 0:
 		velocity -= Vector2(0, -acc).rotated(rotation)
-		
 		fuel -= 1
 	
 	if Input.is_action_pressed("turn_right"):
@@ -51,6 +49,9 @@ func input():
 	
 	if Input.is_action_pressed("turn_left"):
 		rotate(deg2rad(-rotation_amount))
+	
+	if Input.is_action_just_pressed("land") and $"Landing RayCast2D".is_colliding():
+		land($"Landing RayCast2D".get_collider())
 
 func movement(_delta):
 	velocity *= 0.997
@@ -60,14 +61,8 @@ func movement(_delta):
 	
 	velocity = move_and_slide(velocity)
 	
-	if get_slide_count() > 0:
-		var collision = get_slide_collision(get_slide_count() - 1) # Most recent collision
-		
-		if $"Landing RayCast2D".is_colliding() and velocity.length() < 300:
-			land(collision.collider)
-		else:
-			if can_hurt:
-				hurt(velocity.length()/10)
+	if get_slide_count() > 0 and can_hurt:
+		hurt(velocity.length()/10)
 
 func animate():
 	pass
