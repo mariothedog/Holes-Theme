@@ -2,8 +2,10 @@
 
 [ext_resource path="res://Rocket/Rocket.png" type="Texture" id=1]
 [ext_resource path="res://Rocket/Rocket.gd" type="Script" id=2]
-[ext_resource path="res://Rocket/glassPanel_200.png" type="Texture" id=3]
-[ext_resource path="res://Rocket/barHorizontal_red_mid 200.png" type="Texture" id=4]
+[ext_resource path="res://UI/glassPanel_200.png" type="Texture" id=3]
+[ext_resource path="res://UI/barHorizontal_red_mid 200.png" type="Texture" id=4]
+
+
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0, 0.0198676, 0.860927, 1 )

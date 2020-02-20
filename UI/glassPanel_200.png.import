@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/glassPanel_200.png-ded6664096e19a044488982fc103b366.stex"
+path="res://.import/glassPanel_200.png-1f378a50b5dabc82c3f7673090987e58.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Rocket/glassPanel_200.png"
-dest_files=[ "res://.import/glassPanel_200.png-ded6664096e19a044488982fc103b366.stex" ]
+source_file="res://UI/glassPanel_200.png"
+dest_files=[ "res://.import/glassPanel_200.png-1f378a50b5dabc82c3f7673090987e58.stex" ]
 
 [params]
 

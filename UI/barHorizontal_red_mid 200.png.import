@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/barHorizontal_red_mid 200.png-5728eaa051a63a8619ce6e7592243f52.stex"
+path="res://.import/barHorizontal_red_mid 200.png-9e39e8e84fe1b740dcd05223301841f3.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Rocket/barHorizontal_red_mid 200.png"
-dest_files=[ "res://.import/barHorizontal_red_mid 200.png-5728eaa051a63a8619ce6e7592243f52.stex" ]
+source_file="res://UI/barHorizontal_red_mid 200.png"
+dest_files=[ "res://.import/barHorizontal_red_mid 200.png-9e39e8e84fe1b740dcd05223301841f3.stex" ]
 
 [params]
 
