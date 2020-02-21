@@ -12,9 +12,9 @@ var landing_asteroid_positions = []
 func _ready():
 	load_game()
 	
+	randomize()
+	
 	if len(landing_asteroid_positions) == 0:
-		randomize()
-		
 		for _i in range(10):
 			spawn_asteroid_landing()
 	
