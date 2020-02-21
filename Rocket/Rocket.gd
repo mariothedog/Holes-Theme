@@ -88,8 +88,16 @@ func _on_Damage_Shield_timeout():
 func die():
 	queue_free()
 
-func land(asteroid):
-	get_parent().save_scene()
+func land(landing_asteroid):
+	get_parent().save_game()
+	
+	if not global.ore_positions.has(landing_asteroid.position):
+		global.ore_positions[landing_asteroid.position] = []
+	
+	if not global.hole_positions.has(landing_asteroid.position):
+		global.hole_positions[landing_asteroid.position] = []
+	
+	global.recent_landing_asteroid_pos = landing_asteroid.position
 	
 	if get_tree().change_scene("res://Asteroids/Asteroid Scene.tscn") != OK:
 		print_debug("An error occured while switching scene.")

@@ -5,39 +5,57 @@ var PositionsTex = ImageTexture.new()
 
 var number_of_holes = 0
 
-var ore_types = [load("res://Asteroids/Ore/Iron Ore.tscn")]
-var ore_positions = []
+var ore_types = ["res://Asteroids/Ore/Iron Ore.tscn"]
 var min_ore_distance = 85
 
 func _ready():
 	PositionsImage.create(1, 100, false, 15)
 	
-	var spawn_radius = $Sprite.texture.get_size().x/2 - 60
-	
-	for i in range (global.random_number(2, 9)):
-		var ore = ore_types[global.random_number(0, len(ore_types))] # It isn't len(ore_types) - 1 because the max number in the random_number method is excluded
-		var ore_instance = ore.instance()
-		
-		var pos
-		var get_new_pos = true
-		while get_new_pos:
-			var pos_x = global.random_number(-spawn_radius, spawn_radius)
-			var pos_y = global.random_number(-spawn_radius, spawn_radius)
-			pos = Vector2(pos_x, pos_y)
+	var ore_positions = global.ore_positions[global.recent_landing_asteroid_pos]
+	if len(ore_positions) == 0:
+		var spawn_radius = $Sprite.texture.get_size().x/2 - 60
+		for _i in range (global.random_number(2, 9)):
+			var ore_type = ore_types[global.random_number(0, len(ore_types))] # It isn't len(ore_types) - 1 because the max number in the random_number method is excluded
+			var ore_instance = load(ore_type).instance()
 			
-			get_new_pos = false
-			if pos.length() > spawn_radius:
-				get_new_pos = true
-			
-			for posit in ore_positions:
-				if pos.distance_to(posit) < min_ore_distance:
+			var pos
+			var get_new_pos = true
+			while get_new_pos:
+				var pos_x = global.random_number(-spawn_radius, spawn_radius)
+				var pos_y = global.random_number(-spawn_radius, spawn_radius)
+				pos = Vector2(pos_x, pos_y)
+				
+				get_new_pos = false
+				if pos.length() > spawn_radius:
 					get_new_pos = true
+				
+				for ore in ore_positions:
+					if pos.distance_to(ore[1]) < min_ore_distance:
+						get_new_pos = true
+			
+			global.ore_positions[global.recent_landing_asteroid_pos].append([ore_type, pos])
+			
+			ore_instance.position = pos
+			
+			$Ore.add_child(ore_instance) # The ore node has the outline shader.
+	else:
+		for ore in ore_positions:
+			var ore_type = ore[0]
+			var pos = ore[1]
+			
+			var ore_instance = load(ore_type).instance()
+			
+			ore_instance.position = pos
+			
+			$Ore.add_child(ore_instance)
+	
+	var hole_positions = global.hole_positions[global.recent_landing_asteroid_pos]
+	for hole_pos in hole_positions:
+		var pos_x = hole_pos[0]
+		var pos_y = hole_pos[1]
+		var pos = Vector2(pos_x, pos_y)
 		
-		ore_positions.append(pos)
-		ore_instance.position = pos
-		
-		$Ore.add_child(ore_instance) # The ore node has the outline shader.
-		ore_instance.set_owner($Ore)
+		make_hole(pos)
 
 func _on_Click_Detection_input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_LEFT:
@@ -60,8 +78,11 @@ func make_hole(pos):
 	$Sprite.material.set_shader_param("number_of_holes", number_of_holes)
 	
 	number_of_holes += 1
+	
+	if not pos in global.hole_positions[global.recent_landing_asteroid_pos]: # Without this if statement there would be an infinite loop
+		global.hole_positions[global.recent_landing_asteroid_pos].append(pos)
 
 func _on_Rocket_Click_Detection_input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_LEFT:
-		if get_tree().change_scene("res://Space/Spawned Space Scene.tscn") != OK:
+		if get_tree().change_scene("res://Space/Space.tscn") != OK:
 			print_debug("An error occured while switching scene.")
