@@ -17,6 +17,7 @@ texture = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 0, 100 )
 rotating = true
 current = true
 
