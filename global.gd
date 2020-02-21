@@ -6,3 +6,5 @@ func random_number(mini, maxi): # Max number is excluded
 var ore_positions = {}
 var hole_positions = {}
 var recent_landing_asteroid_pos
+
+var inventory = {}

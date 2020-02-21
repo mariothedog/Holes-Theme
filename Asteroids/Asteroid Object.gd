@@ -37,6 +37,8 @@ func _ready():
 			
 			ore_instance.position = pos
 			
+			ore_instance.connect("input_event", self, "mine_ore", [ore_instance])
+			
 			$Ore.add_child(ore_instance) # The ore node has the outline shader.
 	else:
 		for ore in ore_positions:
@@ -46,6 +48,8 @@ func _ready():
 			var ore_instance = load(ore_type).instance()
 			
 			ore_instance.position = pos
+			
+			ore_instance.connect("input_event", self, "mine_ore", [ore_instance])
 			
 			$Ore.add_child(ore_instance)
 	
@@ -86,3 +90,12 @@ func _on_Rocket_Click_Detection_input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_LEFT:
 		if get_tree().change_scene("res://Space/Space.tscn") != OK:
 			print_debug("An error occured while switching scene.")
+
+func mine_ore(_viewport, event, _shape_idx, mined_ore):
+	if event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_LEFT:
+		for ore in global.ore_positions[global.recent_landing_asteroid_pos]:
+			var ore_pos = ore[1]
+			if ore_pos == mined_ore.position:
+				global.ore_positions[global.recent_landing_asteroid_pos].erase(ore)
+		
+		mined_ore.queue_free()
