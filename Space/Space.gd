@@ -101,6 +101,7 @@ func save_game():
 		"rocket_pos_x" : $Rocket.position.x,
 		"rocket_pos_y" : $Rocket.position.y,
 		"rocket_rot" : $Rocket.rotation,
+		"rocket_fuel" : $Rocket.fuel,
 		"ore_positions" : ore_positions,
 		"hole_positions" : hole_positions
 	}
@@ -132,6 +133,8 @@ func load_game():
 		$Rocket.position.x = node_data["rocket_pos_x"]
 		$Rocket.position.y = node_data["rocket_pos_y"]
 		$Rocket.rotation = node_data["rocket_rot"]
+		
+		$Rocket.fuel = node_data["rocket_fuel"]
 		
 		if len(global.ore_positions) == 0:
 			var ore_positions = node_data["ore_positions"]
