@@ -51,3 +51,6 @@ func movement(delta):
 
 func animate():
 	pass
+
+func _on_Asteroid_Object_update_inventory():
+	$HUD.update_inventory()

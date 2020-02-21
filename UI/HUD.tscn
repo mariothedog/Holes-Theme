@@ -7,9 +7,9 @@
 script = ExtResource( 2 )
 
 [node name="Inventory" type="VSplitContainer" parent="."]
-anchor_left = 0.99
+anchor_left = 0.97
 anchor_top = 0.02
-anchor_right = 1.0
+anchor_right = 0.97
 anchor_bottom = 0.02
 margin_left = -154.0
 margin_bottom = 100.0
@@ -18,7 +18,7 @@ __meta__ = {
 }
 
 [node name="Iron" type="HSplitContainer" parent="Inventory"]
-margin_right = 164.24
+margin_right = 154.0
 margin_bottom = 100.0
 dragger_visibility = 1
 
@@ -30,6 +30,6 @@ text = "Iron: 0"
 
 [node name="TextureRect" type="TextureRect" parent="Inventory/Iron"]
 margin_left = 54.0
-margin_right = 164.24
+margin_right = 154.0
 margin_bottom = 100.0
 texture = ExtResource( 1 )

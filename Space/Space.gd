@@ -103,7 +103,8 @@ func save_game():
 		"rocket_rot" : $Rocket.rotation,
 		"rocket_fuel" : $Rocket.fuel,
 		"ore_positions" : ore_positions,
-		"hole_positions" : hole_positions
+		"hole_positions" : hole_positions,
+		"inventory" : global.inventory
 	}
 	save_game.store_line(to_json(node_data))
 	
@@ -160,3 +161,7 @@ func load_game():
 				for hole in hole_positions[asteroid_pos]:
 					var hole_vec_pos = Vector2(hole[0], hole[1])
 					global.hole_positions[vec_pos].append(hole_vec_pos)
+		
+		if len(global.inventory) == 0:
+			global.inventory = node_data["inventory"]
+		$Rocket/HUD.update_inventory()

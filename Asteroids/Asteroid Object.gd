@@ -1,5 +1,7 @@
 extends StaticBody2D
 
+signal update_inventory
+
 var PositionsImage = Image.new()
 var PositionsTex = ImageTexture.new()
 
@@ -99,3 +101,7 @@ func mine_ore(_viewport, event, _shape_idx, mined_ore):
 				global.ore_positions[global.recent_landing_asteroid_pos].erase(ore)
 		
 		mined_ore.queue_free()
+		
+		global.inventory["Iron Ore"] = global.inventory.get("Iron Ore", 0) + 1
+		
+		emit_signal("update_inventory")
