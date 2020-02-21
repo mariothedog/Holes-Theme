@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Rocket/Rocket.png" type="Texture" id=1]
 [ext_resource path="res://Rocket/Rocket.gd" type="Script" id=2]
 [ext_resource path="res://UI/glassPanel_200.png" type="Texture" id=3]
 [ext_resource path="res://UI/barHorizontal_red_mid 200.png" type="Texture" id=4]
+[ext_resource path="res://UI/HUD.tscn" type="PackedScene" id=5]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0, 0.0198676, 0.860927, 1 )
@@ -84,9 +85,9 @@ one_shot = true
 position = Vector2( 0, 72 )
 enabled = true
 
-[node name="HUD" type="CanvasLayer" parent="."]
+[node name="Rocket HUD" type="CanvasLayer" parent="."]
 
-[node name="Fuel Bar" type="TextureProgress" parent="HUD"]
+[node name="Fuel Bar" type="TextureProgress" parent="Rocket HUD"]
 margin_left = 16.0
 margin_top = 16.0
 margin_right = 216.0
@@ -97,4 +98,6 @@ texture_progress = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="HUD" parent="." instance=ExtResource( 5 )]
 [connection signal="timeout" from="Damage Shield" to="." method="_on_Damage_Shield_timeout"]
