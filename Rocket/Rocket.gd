@@ -20,14 +20,14 @@ func _ready():
 	$"Health Bar".max_value = max_health
 	health = max_health
 	
-	$"HUD/Fuel Bar".max_value = max_fuel
+	$"Rocket HUD/Fuel Bar".max_value = max_fuel
 	fuel = max_fuel
 
 func _process(_delta):
 	if health < max_health:
 		$"Health Bar".visible = true
 	
-	$"HUD/Fuel Bar".value = fuel
+	$"Rocket HUD/Fuel Bar".value = fuel
 
 func _physics_process(delta):
 	input()
