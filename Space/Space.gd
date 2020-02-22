@@ -1,6 +1,6 @@
 extends Node2D
 
-var spawn_radius = 600
+var spawn_radius = 300
 var min_asteroid_dist = 1500
 var min_asteroid_dist_to_player = 3000
 var max_asteroid_spawn_dist_to_player = 1000
