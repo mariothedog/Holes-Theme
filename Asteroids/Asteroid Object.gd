@@ -105,6 +105,3 @@ func mine_ore(_viewport, event, _shape_idx, mined_ore):
 		global.inventory["Iron Ore"] = global.inventory.get("Iron Ore", 0) + global.random_number(2, 6)
 		
 		emit_signal("update_inventory")
-
-func create_collision_shape():
-	var collision_polygon_2D = CollisionPolygon2D.new()

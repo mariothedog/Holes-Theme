@@ -32,7 +32,6 @@ func _process(_delta):
 func _physics_process(delta):
 	input()
 	movement(delta)
-	animate()
 
 func input():
 	if Input.is_action_pressed("thrust") and fuel > 0:
@@ -63,9 +62,6 @@ func movement(_delta):
 	
 	if get_slide_count() > 0 and can_hurt:
 		hurt(velocity.length()/10)
-
-func animate():
-	pass
 
 func hurt(dmg):
 	var old_health = health
