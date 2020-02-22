@@ -148,6 +148,7 @@ func load_game():
 		$Rocket.rotation = node_data["rocket_rot"]
 		
 		$Rocket.fuel = node_data["rocket_fuel"]
+		$"Rocket/Rocket HUD/MarginContainer/Fuel Bar".value = $Rocket.fuel
 		$Rocket.health = node_data["rocket_health"]
 		$"Rocket/Health Bar".value = $Rocket.health
 		

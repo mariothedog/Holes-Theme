@@ -17,17 +17,19 @@ var can_hurt = true
 func _ready():
 	$CPUParticles2D.emitting = false
 	
+	$"Rocket HUD/Shop".visible = false
+	
 	$"Health Bar".max_value = max_health
 	health = max_health
 	
-	$"Rocket HUD/Fuel Bar".max_value = max_fuel
+	$"Rocket HUD/MarginContainer/Fuel Bar".max_value = max_fuel
 	fuel = max_fuel
+	
+	$"Rocket HUD/MarginContainer/Fuel Bar".value = fuel
 
 func _process(_delta):
 	if health < max_health:
 		$"Health Bar".visible = true
-	
-	$"Rocket HUD/Fuel Bar".value = fuel
 
 func _physics_process(delta):
 	input()
@@ -38,10 +40,14 @@ func input():
 		velocity += Vector2(0, -acc).rotated(rotation)
 		$CPUParticles2D.emitting = true
 		fuel -= 1
+		
+		$"Rocket HUD/MarginContainer/Fuel Bar".value = fuel
 	
 	if Input.is_action_pressed("thrust_back") and fuel > 0:
 		velocity -= Vector2(0, -acc).rotated(rotation)
 		fuel -= 1
+		
+		$"Rocket HUD/MarginContainer/Fuel Bar".value = fuel
 	
 	if Input.is_action_pressed("turn_right"):
 		rotate(deg2rad(rotation_amount))
@@ -98,3 +104,17 @@ func land(landing_asteroid):
 	
 	if get_tree().change_scene("res://Asteroids/Asteroid Scene.tscn") != OK:
 		print_debug("An error occured while switching scene.")
+
+func _on_Shop_Button_pressed():
+	$"Rocket HUD/Shop".visible = not $"Rocket HUD/Shop".visible
+
+func _on_Shop_Close_Button_pressed():
+	$"Rocket HUD/Shop".visible = false
+
+func _on_Refuel_Button_pressed():
+	if global.inventory.get("Iron Ore", 0) >= 15:
+		global.inventory["Iron Ore"] -= 15
+		$HUD.update_inventory()
+		$"Fuel Bar Tween".interpolate_property($"Rocket HUD/MarginContainer/Fuel Bar", "value", fuel, max_fuel, 0.5)
+		$"Fuel Bar Tween".start()
+		fuel = max_fuel
