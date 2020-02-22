@@ -12,3 +12,6 @@ var recent_landing_asteroid_pos
 
 # warning-ignore:unused_class_variable
 var inventory = {}
+
+# warning-ignore:unused_class_variable
+var player_alive = true

@@ -61,7 +61,7 @@ func movement(_delta):
 	velocity = move_and_slide(velocity)
 	
 	if get_slide_count() > 0 and can_hurt:
-		hurt(velocity.length()/10)
+		hurt(clamp(velocity.length()/10, 5, 60))
 
 func hurt(dmg):
 	var old_health = health
@@ -82,6 +82,7 @@ func _on_Damage_Shield_timeout():
 	can_hurt = true
 
 func die():
+	global.player_alive = false
 	queue_free()
 
 func land(landing_asteroid):

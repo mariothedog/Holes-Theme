@@ -21,30 +21,41 @@ func _ready():
 	save_game()
 
 func _process(_delta):
-	var spawnAsteroid = true
-	for posit in landing_asteroid_positions:
-		if $Rocket.position.distance_to(posit) < min_asteroid_dist_to_player:
-			spawnAsteroid = false
-			return
-
-	if spawnAsteroid:
-		var landing_asteroid_instance = landing_asteroid_scene.instance()
-
-		var pos
-		var in_range = true
-		while in_range:
-			var pos_x = global.random_number($Rocket.position.x - 1700, $Rocket.position.x + 1700)
-			var pos_y = global.random_number($Rocket.position.y - 1700, $Rocket.position.y + 1700)
-			pos = Vector2(pos_x, pos_y)
-
-			in_range = $Rocket.position.distance_to(pos) < max_asteroid_spawn_dist_to_player
-
-		landing_asteroid_positions.append(pos)
-		landing_asteroid_instance.position = pos
+	if global.player_alive:
+		var spawnAsteroid = true
+		for posit in landing_asteroid_positions:
+			if $Rocket.position.distance_to(posit) < min_asteroid_dist_to_player:
+				spawnAsteroid = false
+				return
+	
+		if spawnAsteroid:
+			var landing_asteroid_instance = landing_asteroid_scene.instance()
+	
+			var pos
+			var in_range = true
+			while in_range:
+				var pos_x = global.random_number($Rocket.position.x - 1700, $Rocket.position.x + 1700)
+				var pos_y = global.random_number($Rocket.position.y - 1700, $Rocket.position.y + 1700)
+				pos = Vector2(pos_x, pos_y)
+	
+				in_range = $Rocket.position.distance_to(pos) < max_asteroid_spawn_dist_to_player
+	
+			landing_asteroid_positions.append(pos)
+			landing_asteroid_instance.position = pos
+			
+			add_child(landing_asteroid_instance)
+	
+			save_game()
+	else:
+		delete_game()
 		
-		add_child(landing_asteroid_instance)
-
-		save_game()
+		global.ore_positions = {}
+		global.hole_positions = {}
+		global.inventory = {}
+		global.player_alive = true
+		
+		if get_tree().reload_current_scene() != OK:
+			print_debug("An error occured while reloading the current scene.")
 
 func spawn_asteroid_landing():
 	var landing_asteroid_instance = landing_asteroid_scene.instance()
@@ -102,6 +113,7 @@ func save_game():
 		"rocket_pos_y" : $Rocket.position.y,
 		"rocket_rot" : $Rocket.rotation,
 		"rocket_fuel" : $Rocket.fuel,
+		"rocket_health" : $Rocket.health,
 		"ore_positions" : ore_positions,
 		"hole_positions" : hole_positions,
 		"inventory" : global.inventory
@@ -136,6 +148,8 @@ func load_game():
 		$Rocket.rotation = node_data["rocket_rot"]
 		
 		$Rocket.fuel = node_data["rocket_fuel"]
+		$Rocket.health = node_data["rocket_health"]
+		$"Rocket/Health Bar".value = $Rocket.health
 		
 		if len(global.ore_positions) == 0:
 			var ore_positions = node_data["ore_positions"]
@@ -165,3 +179,7 @@ func load_game():
 		if len(global.inventory) == 0:
 			global.inventory = node_data["inventory"]
 		$Rocket/HUD.update_inventory()
+
+func delete_game():
+	var dir = Directory.new()
+	dir.remove("user://savegame.save")
