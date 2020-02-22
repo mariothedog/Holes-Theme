@@ -15,8 +15,8 @@ func _ready():
 	
 	var ore_positions = global.ore_positions[global.recent_landing_asteroid_pos]
 	if len(ore_positions) == 0:
-		var spawn_radius = $Sprite.texture.get_size().x/2 - 60
-		for _i in range (global.random_number(2, 9)):
+		var spawn_radius = $Sprite.texture.get_size().x/2 - 180
+		for _i in range (global.random_number(4, 9)):
 			var ore_type = ore_types[global.random_number(0, len(ore_types))] # It isn't len(ore_types) - 1 because the max number in the random_number method is excluded
 			var ore_instance = load(ore_type).instance()
 			
