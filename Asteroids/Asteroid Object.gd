@@ -102,6 +102,6 @@ func mine_ore(_viewport, event, _shape_idx, mined_ore):
 		
 		mined_ore.queue_free()
 		
-		global.inventory["Iron Ore"] = global.inventory.get("Iron Ore", 0) + 1
+		global.inventory["Iron Ore"] = global.inventory.get("Iron Ore", 0) + global.random_number(2, 6)
 		
 		emit_signal("update_inventory")
