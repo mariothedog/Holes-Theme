@@ -41,7 +41,7 @@ func _ready():
 			
 			ore_instance.connect("input_event", self, "mine_ore", [ore_instance])
 			
-			$Ore.add_child(ore_instance) # The ore node has the outline shader.
+			$Ore.add_child(ore_instance)
 	else:
 		for ore in ore_positions:
 			var ore_type = ore[0]
