@@ -16,6 +16,21 @@ texture = ExtResource( 1 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2( -16, 45 )
+enabled = true
+cast_to = Vector2( 0, 15 )
+
+[node name="RayCast2D2" type="RayCast2D" parent="."]
+position = Vector2( 0, 45 )
+enabled = true
+cast_to = Vector2( 0, 15 )
+
+[node name="RayCast2D3" type="RayCast2D" parent="."]
+position = Vector2( 16, 45 )
+enabled = true
+cast_to = Vector2( 0, 15 )
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 0, 100 )
 rotating = true

@@ -1,14 +1,11 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=2]
 
 [ext_resource path="res://Asteroids/Asteroid.png" type="Texture" id=1]
-
-[sub_resource type="CircleShape2D" id=1]
-radius = 430.0
 
 [node name="Landing Asteroid" type="StaticBody2D"]
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( 228.5, -425, 228.5, -423, 313.5, -389.9, 313.5, -387.7, 350.5, -354.7, 350.5, -351.5, 369.5, -311.6, 369.5, -306.9, 419.5, -112.1, 419.5, -106.5, 433.5, -23.9, 433.5, -11.3, 424.2, 122.5, 422.2, 122.5, 399.2, 198.5, 397, 198.5, 350, 259.5, 347.3, 259.5, 210.4, 380.5, 207.8, 380.5, 139.8, 418.5, 136.2, 418.5, 58.1, 436.5, -21.7, 436.5, -148.5, 425.1, -148.5, 423, -226.5, 395, -226.5, 392.7, -282.5, 340.7, -282.5, 337.8, -377.5, 174.9, -377.5, 171.2, -426.5, 26.3, -426.5, 22, -434, -52.5, -431.7, -52.5, -420.7, -113.5, -418.7, -113.5, -375.7, -206.5, -374.1, -206.5, -343.1, -250.5, -341.4, -250.5, -297.4, -288.5, -294.8, -288.5, -226.8, -326.5, -223.4, -326.5, -20.5, -408.5, -17.3, -408.5, 61.9, -427.5, 69.1, -427.5, 132.5, -433.1, 132.5, -435.1 )

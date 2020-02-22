@@ -11,5 +11,5 @@
 [node name="Asteroid Object" parent="." instance=ExtResource( 1 )]
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 0, -483 )
+position = Vector2( 0, -470 )
 [connection signal="update_inventory" from="Asteroid Object" to="Player" method="_on_Asteroid_Object_update_inventory"]

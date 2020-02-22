@@ -5,7 +5,7 @@ const jump_vec = Vector2(0, 500)
 
 onready var asteroid = get_parent().get_node("Asteroid Object")
 
-var acc = Vector2(10, 0)
+var acc = Vector2(15, 0)
 
 var velocity = Vector2()
 
@@ -33,16 +33,15 @@ func movement(delta):
 	
 	var gravity = direction_to_asteroid * gravity_strength
 	
-	velocity += gravity * delta
-	
-	if is_on_floor():
-		velocity *= 0.95 # Ground Friction
-		acc = Vector2(10, 0)
+	if $RayCast2D.is_colliding() or $RayCast2D2.is_colliding() or $RayCast2D3.is_colliding():
+		velocity *= 0.9 # Ground Friction
+		acc = Vector2(15, 0)
 	else:
+		velocity += gravity * delta
 		velocity *= 0.99 # Space Friction
 		acc = Vector2(6, 0)
 	
-	if jump and is_on_floor():
+	if jump and ($RayCast2D.is_colliding() or $RayCast2D2.is_colliding() or $RayCast2D3.is_colliding()):#is_on_floor():
 		velocity = jump_vec.rotated(position.direction_to(asteroid.position).angle() + PI/2)
 	
 	velocity = move_and_slide(velocity, -position.direction_to(asteroid.position))
