@@ -47,15 +47,11 @@ func _process(_delta):
 	
 			save_game()
 	else:
-		delete_game()
-		
-		global.ore_positions = {}
-		global.hole_positions = {}
-		global.inventory = {}
-		global.player_alive = true
-		
-		if get_tree().reload_current_scene() != OK:
-			print_debug("An error occured while reloading the current scene.")
+		restart()
+
+func _physics_process(delta):
+	if Input.is_action_just_pressed("restart"):
+		restart()
 
 func spawn_asteroid_landing():
 	var landing_asteroid_instance = landing_asteroid_scene.instance()
@@ -184,3 +180,14 @@ func load_game():
 func delete_game():
 	var dir = Directory.new()
 	dir.remove("user://savegame.save")
+
+func restart():
+	delete_game()
+		
+	global.ore_positions = {}
+	global.hole_positions = {}
+	global.inventory = {}
+	global.player_alive = true
+	
+	if get_tree().reload_current_scene() != OK:
+		print_debug("An error occured while reloading the current scene.")
