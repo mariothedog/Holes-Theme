@@ -44,7 +44,7 @@ func input():
 		$"Rocket HUD/MarginContainer/Fuel Bar".value = fuel
 	
 	if Input.is_action_pressed("thrust_back") and fuel > 0:
-		velocity -= Vector2(0, -acc/2).rotated(rotation)
+		velocity -= Vector2(0, -acc/2.0).rotated(rotation)
 		$CPUParticles2D.emitting = true
 		fuel -= 1
 		
