@@ -49,7 +49,7 @@ func _process(_delta):
 	else:
 		restart()
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if Input.is_action_just_pressed("restart"):
 		restart()
 
@@ -76,7 +76,7 @@ func spawn_asteroid_landing():
 
 func save_game():
 	var save_game = File.new()
-	save_game.open("user://savegame.save", File.WRITE) # "user://savegame.save" is saved at "C:\Users\User\AppData\Roaming\Godot\app_userdata\Holes Theme" on Windows
+	save_game.open("user://savegame.save", File.WRITE) # "user://savegame.save" is saved at "C:\Users\User\AppData\Roaming\Godot\app_userdata\Asteroid Miner" on Windows 10
 	
 	var landing_asteroid_positions_x = []
 	var landing_asteroid_positions_y = []
