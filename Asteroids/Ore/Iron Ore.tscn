@@ -3,7 +3,7 @@
 [ext_resource path="res://Asteroids/Ore/Iron.png" type="Texture" id=1]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 75.0
+radius = 54.0
 
 [node name="Iron Ore" type="Area2D"]
 use_parent_material = true

@@ -8,7 +8,7 @@ var PositionsTex = ImageTexture.new()
 var number_of_holes = 0
 
 var ore_types = ["res://Asteroids/Ore/Iron Ore.tscn"]
-var min_ore_distance = 85
+var min_ore_distance = 120
 
 func _ready():
 	PositionsImage.create(1, 100, false, 15)
@@ -87,6 +87,9 @@ func make_hole(pos):
 	
 	if not pos in global.hole_positions[global.recent_landing_asteroid_pos]: # Without this if statement there would be an infinite loop
 		global.hole_positions[global.recent_landing_asteroid_pos].append(pos)
+	
+	if not $"Mine Iron SFX".playing:
+		$"Mine Hole SFX".play()
 
 func _on_Rocket_Click_Detection_input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_LEFT:
@@ -100,6 +103,7 @@ func mine_ore(_viewport, event, _shape_idx, mined_ore):
 			if ore_pos == mined_ore.position:
 				global.ore_positions[global.recent_landing_asteroid_pos].erase(ore)
 		
+		$"Mine Iron SFX".play()
 		mined_ore.queue_free()
 		
 		global.inventory["Iron Ore"] = global.inventory.get("Iron Ore", 0) + global.random_number(2, 6)
