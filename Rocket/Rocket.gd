@@ -107,13 +107,16 @@ func land(landing_asteroid):
 		print_debug("An error occured while switching scene.")
 
 func _on_Shop_Button_pressed():
+	$"Mouse Click SFX".play()
 	$"Rocket HUD/Shop".visible = not $"Rocket HUD/Shop".visible
 
 func _on_Shop_Close_Button_pressed():
+	$"Mouse Click SFX".play()
 	$"Rocket HUD/Shop".visible = false
 
 func _on_Refuel_Button_pressed():
 	if global.inventory.get("Iron Ore", 0) >= 15:
+		$"Mouse Click SFX".play()
 		global.inventory["Iron Ore"] -= 15
 		$HUD.update_inventory()
 		$"Fuel Bar Tween".interpolate_property($"Rocket HUD/MarginContainer/Fuel Bar", "value", fuel, max_fuel, 0.5)
