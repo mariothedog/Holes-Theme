@@ -49,7 +49,19 @@ func movement(delta):
 	rotation = direction_to_asteroid.angle() - PI/2
 
 func animate():
-	pass
+	var right_vec = acc.rotated(position.direction_to(asteroid.position).angle() - PI/2)
+	var angle = rad2deg(velocity.angle_to(right_vec))
+	if angle < 20 and angle >= 0:
+		$AnimatedSprite.flip_h = false
+	
+	if angle > 160 and angle <= 180:
+		$AnimatedSprite.flip_h = true
+	
+	if velocity.length() > 50:
+		$AnimatedSprite.play("walk")
+	else:
+		$AnimatedSprite.frame = 0
+		$AnimatedSprite.stop()
 
 func _on_Asteroid_Object_update_inventory():
 	$HUD.update_inventory()
